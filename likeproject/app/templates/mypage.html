@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <p>좋아요 누른 게시물</p>
+    {% for post in posts %}
+    {% for like in likes %}
+    <ul>
+        {% if post.pk == like.post.pk %}
+        <li><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></li>
+        {% endif %}
+    </ul>
+    {% endfor %}
+    {% endfor %}
+</div>
+<div>
+    <p>찜한 게시물</p>
+    {% for post in posts %}
+    {% for select in selected %}
+    <ul>
+        {% if post.pk == select.post.pk %}
+        <li><a href="{% url 'detail' post.pk %}">{{ post.title }}</a></li>
+        {% endif %}
+    </ul>
+    {% endfor %}
+    {% endfor %}
+</div>
+{% endblock content %}
